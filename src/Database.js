@@ -3,19 +3,20 @@
   const database = {
     lastReviewed: {
       maxLength: 4,
-      orderIds: [1, 2, 3, 4]
+      orderIds: []
     },
-    orders: [
-      { id: 1, fullname: 'Мухаммад Цокаев', good: 'Бумага дял принтера', price: 500, status: 'new', date: Date.now() },
-      { id: 2, fullname: 'Алексей Иванов', good: 'Краска дял принтера', price: 2000, status: 'process', date: Date.now() },
-      { id: 3, fullname: 'Олег Петухов', good: 'Принтер', price: 12000, status: 'back', date: Date.now() },
-    ]
+    orders: []
   };
+
+  load();
 
   const api = new EventEmitter;
 
   api.seed = function seed(orders) {
     database.orders = getCopy(orders);
+
+    save();
+    api.emit('update');
   }
 
   api.getOrderById = function getOrderById(id) {
@@ -39,6 +40,7 @@
     }
     database.lastReviewed.orderIds = [orderId, ...database.lastReviewed.orderIds].slice(0, database.lastReviewed.maxLength);
 
+    save();
     api.emit('update');
   }
 
@@ -46,5 +48,15 @@
 
   function getCopy(x) {
     return JSON.parse(JSON.stringify(x));
+  }
+
+  function save() {
+    localStorage.setItem('__CRM-DATABASE__', JSON.stringify(database));
+  }
+
+  function load() {
+    if (localStorage.getItem('__CRM-DATABASE__')) {
+      Object.assign(database, JSON.parse(localStorage.getItem('__CRM-DATABASE__')));
+    }
   }
 })();

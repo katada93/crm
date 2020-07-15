@@ -21,31 +21,31 @@
 
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="#">
+              <a class="nav-link active" href="index.html#">
                 <img src="./assets/data-collection.png" alt="" style="width: 30px;" />
                 Все заказы
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href='index.html#{"status":"new"}'>
                 <img src="./assets/new.png" alt="" style="width: 30px;" />
                 Новые
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href='index.html#{"status":"process"}'>
                 <img src="./assets/innovation.png" alt="" style="width: 30px;" />
                 На исполнение
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href='index.html#{"status":"back"}'>
                 <img src="./assets/back.png" alt="" style="width: 30px;" />
                 Возврат
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href='index.html#{"status":"archived"}'>
                 <img src="./assets/compressed.png" alt="" style="width: 30px;" />
                 Заархивированные
               </a>
@@ -236,12 +236,13 @@
   </div>
   <template data-reviewed>
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href='editor.html#{"orderId":%ID%}'>
         <img src="./assets/arrow.png" alt="" style="width: 30px;" />
         %FULLNAME%
       </a>
     </li>
   </template>
+
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -256,7 +257,6 @@
   <script src="src/Router.js"></script>
   <script src="src/Database.js"></script>
   <script src="src/nav.js"></script>
-  <script src="src/seeding.js"></script>
   <script src="src/index.js"></script>
 </body>
 
