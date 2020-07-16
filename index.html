@@ -93,18 +93,18 @@
         <div class="form-row p-2">
           <div class="form-group col">
             <label>ФИО:</label>
-            <input class="form-control" type="text" placeholder="ФИО" />
+            <input class="form-control" type="text" placeholder="ФИО" data-filter-fullname>
           </div>
           <div class="form-group col">
             <label>Заказ:</label>
-            <select class="form-control">
+            <select class="form-control" data-filter-good>
               <option selected></option>
               <option></option>
             </select>
           </div>
           <div class="form-group col">
             <label>Статус:</label>
-            <select class="form-control">
+            <select class="form-control" data-filter-status>
               <option selected>Все</option>
               <option>Новые</option>
               <option>На исполнение</option>
@@ -114,13 +114,13 @@
           </div>
           <div class="form-group col">
             <label>Сумма:</label>
-            <input class="form-control" type="number" placeholder="От" />
-            <input class="form-control" type="number" placeholder="До" />
+            <input class="form-control" type="number" placeholder="От" data-filter-minprice>
+            <input class="form-control" type="number" placeholder="До" data-filter-maxprice>
           </div>
           <div class="form-group col">
             <label>Дата:</label>
-            <input class="form-control" type="date" />
-            <input class="form-control" type="date" />
+            <input class="form-control" type="date" data-filter-mindate>
+            <input class="form-control" type="date" data-filter-maxdate>
           </div>
         </div>
 
@@ -137,7 +137,7 @@
                 <th>Дата / Время</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody data-orders-list>
               <tr>
                 <td>1</td>
                 <td>Максим Анатольевич</td>
@@ -241,6 +241,24 @@
         %FULLNAME%
       </a>
     </li>
+  </template>
+
+  <template data-order-row>
+    <tr>
+      <td>%ID%</td>
+      <td>%FULLNAME%</td>
+      <td>%GOOD%</td>
+      <td>%PRICE%</td>
+      <td>
+        <div class="badge badge-%STATUS_COLOR%">%STATUS%</div>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary btn-sm">
+          Редактировать
+        </button>
+      </td>
+      <td>%DATE%</td>
+    </tr>
   </template>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

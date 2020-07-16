@@ -5,6 +5,7 @@
       maxLength: 4,
       orderIds: []
     },
+    maxOrders: 10,
     orders: []
   };
 
@@ -17,6 +18,23 @@
 
     save();
     api.emit('update');
+  }
+
+  api.getOrders = function getOrders(state) {
+    state = getCopy(state);
+    let orders = getCopy(database.orders);
+
+    if (state.fullname) {
+      const fullnameLowercase = state.fullname.toLowerCase();
+      orders = orders.filter((x) => x.fullname.toLowerCase().includes(fullnameLowercase));
+    }
+
+    return {
+      orders: orders.slice(0, database.maxOrders),
+      currentPage: 1,
+      commonPages: Math.ceil(orders.length / database.maxOrders)
+    }
+
   }
 
   api.getOrderById = function getOrderById(id) {
