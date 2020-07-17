@@ -29,6 +29,29 @@
       orders = orders.filter((x) => x.fullname.toLowerCase().includes(fullnameLowercase));
     }
 
+    if (state.good) {
+      orders = orders.filter((x) => x.good === state.good)
+    }
+
+    if (state.status) {
+      orders = orders.filter((x) => x.status === state.status)
+    }
+
+    if (state.minprice) {
+      orders = orders.filter((x) => x.price >= state.minprice)
+    }
+
+    if (state.maxprice) {
+      orders = orders.filter((x) => x.price <= state.maxprice)
+    }
+
+    if (state.mindate) {
+      orders = orders.filter((x) => x.date >= state.mindate)
+    }
+    if (state.maxdate) {
+      orders = orders.filter((x) => x.date <= state.maxdate)
+    }
+
     return {
       orders: orders.slice(0, database.maxOrders),
       currentPage: 1,

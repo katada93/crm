@@ -17,7 +17,7 @@ init();
 update();
 
 function init() {
-  document.querySelector('[data-filter-fullname]').addEventListener('keyup', function (e) {
+  document.querySelector('[data-filter-fullname]').addEventListener('keyup', function () {
     if (this.value) {
       setState({
         fullname: this.value
@@ -25,6 +25,82 @@ function init() {
     } else {
       setState({
         fullname: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-good]').addEventListener('change', function () {
+    if (this.value) {
+      setState({
+        good: this.value
+      })
+    } else {
+      setState({
+        good: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-status]').addEventListener('change', function () {
+    if (this.value) {
+      setState({
+        status: this.value
+      })
+    } else {
+      setState({
+        status: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-minprice]').addEventListener('keyup', function () {
+    if (this.value) {
+      setState({
+        minprice: this.value
+      })
+    } else {
+      setState({
+        minprice: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-maxprice]').addEventListener('keyup', function () {
+    if (this.value) {
+      setState({
+        maxprice: this.value
+      })
+    } else {
+      setState({
+        maxprice: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-mindate]').addEventListener('change', function () {
+    if (this.value) {
+      const date = new Date(this.value);
+
+      setState({
+        mindate: date.getTime()
+      })
+    } else {
+      setState({
+        mindate: null
+      })
+    }
+  })
+
+  document.querySelector('[data-filter-maxdate]').addEventListener('change', function () {
+    if (this.value) {
+      const date = new Date(this.value);
+
+      setState({
+        maxdate: date.getTime()
+      })
+    } else {
+      setState({
+        maxdate: null
       })
     }
   })
