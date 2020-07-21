@@ -109,7 +109,7 @@
           <div class="form-group col">
             <label>Статус:</label>
             <select class="form-control" data-filter-status>
-              <option value="" selected></option>
+              <option value="" selected>Все</option>
               <option value="new">Новые</option>
               <option value="process">На исполнение</option>
               <option value="back">Возврат</option>
@@ -238,6 +238,7 @@
       </main>
     </div>
   </div>
+
   <template data-reviewed>
     <li class="nav-item">
       <a class="nav-link" href='editor.html#{"orderId":%ID%}'>
@@ -257,9 +258,11 @@
         <div class="badge badge-%STATUS_COLOR%">%STATUS%</div>
       </td>
       <td>
-        <button class="btn btn-outline-primary btn-sm">
-          Редактировать
-        </button>
+        <a href='editor.html#{"orderId":%ID%}'>
+          <button class="btn btn-outline-primary btn-sm">
+            Редактировать
+          </button>
+        </a>
       </td>
       <td>%DATE%</td>
     </tr>
