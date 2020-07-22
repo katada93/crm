@@ -13,6 +13,19 @@
 
   const api = new EventEmitter;
 
+  api.createOrder = function createOrder(order) {
+    order = getCopy(order);
+    order.status = 'new';
+    order.date = Date.now();
+    order.id = Math.max(0, ...database.orders.map(x => x.id)) + 1;
+
+    database.orders.push(order);
+    save();
+    api.emit('update');
+
+    return order.id;
+  }
+
   api.seed = function seed(orders) {
     database.orders = getCopy(orders);
 
