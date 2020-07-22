@@ -53,8 +53,8 @@
     }
 
     return {
-      orders: orders.slice(0, database.maxOrders),
-      currentPage: 1,
+      orders: orders.slice((state.currentPage - 1) * database.maxOrders, state.currentPage * database.maxOrders),
+      currentPage: state.currentPage,
       commonPages: Math.ceil(orders.length / database.maxOrders)
     }
 

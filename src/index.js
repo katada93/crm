@@ -33,7 +33,6 @@ function init() {
 
     element.addEventListener('keyup', handler);
     element.addEventListener('change', handler);
-
     function handler() {
       if (this.value) {
         setState({
@@ -45,6 +44,32 @@ function init() {
         })
       }
     }
+  })
+
+  if (hashObject.currentPage) {
+    state.currentPage = hashObject.currentPage;
+  }
+
+  document.querySelector('[data-pagenav-prev]').addEventListener('click', (e) => {
+    e.preventDefault();
+    setState({
+      currentPage: state.currentPage - 1
+    })
+  })
+  document.querySelector('[data-pagenav-next]').addEventListener('click', (e) => {
+    e.preventDefault();
+    setState({
+      currentPage: state.currentPage + 1
+    })
+  })
+
+  document.querySelector('[data-pagination]').addEventListener('click', (e) => {
+    e.preventDefault();
+    const pageNumber = parseInt(e.target.textContent);
+
+    setState({
+      currentPage: pageNumber
+    })
   })
 }
 
@@ -66,12 +91,17 @@ function update() {
   state.commonPages = answer.commonPages;
 
   updateTable();
+  updatePagination();
 }
 
 function setState(obj) {
   Object.assign(state, obj);
 
   const hashObject = {};
+
+  if (state.currentPage !== 1) {
+    hashObject.currentPage = state.currentPage;
+  }
 
   byFilterNames(filterName => {
     if (state[filterName]) {
@@ -125,5 +155,41 @@ function byFilterNames(handler) {
 
   for (const filterName of filterNames) {
     handler(filterName);
+  }
+}
+
+function updatePagination() {
+  const numbersMounte = document.querySelector('[data-pagination]');
+  const prevButton = document.querySelector('[data-pagenav-prev]');
+  const nextButton = document.querySelector('[data-pagenav-next]');
+
+  numbersMounte.innerHTML = '';
+
+  for (let i = 0; i < state.commonPages; i++) {
+    const liElement = document.createElement('li');
+    liElement.classList.add('page-item');
+
+    if (state.currentPage === i + 1) {
+      liElement.classList.add('active');
+    }
+
+    const aElement = document.createElement('a');
+    aElement.classList.add('page-link');
+    aElement.setAttribute('href', '#');
+    aElement.textContent = i + 1;
+
+    liElement.append(aElement);
+    numbersMounte.append(liElement);
+  }
+
+  prevButton.classList.remove('disabled')
+  nextButton.classList.remove('disabled')
+
+  if (state.currentPage === 1) {
+    prevButton.classList.add('disabled');
+  }
+
+  if (state.currentPage === state.commonPages) {
+    nextButton.classList.add('disabled');
   }
 }
