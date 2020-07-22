@@ -87,53 +87,59 @@
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex flex-column p-2">
         <div class="card">
           <div class="card-header">
-            <h2>Серьгей Лазонка</h2>
+            <h2 data-fullame></h2>
           </div>
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">ID:</label>
               <div class="col-sm-11">
-                <input type="text" class="form-control-plaintext" readonly value="2" />
+                <input type="text" class="form-control-plaintext" readonly value="2" data-order-id>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">ФИО:</label>
               <div class="col-sm-11">
-                <input type="text" class="form-control" value="Серьгей Лазонка" />
+                <input type="text" class="form-control" value="Серьгей Лазонка" data-order-fullname>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">Заказ:</label>
               <div class="col-sm-11">
-                <select class="form-control">
-                  <option selected>Бумага для принтера</option>
-                  <option>Краски для принтера</option>
-                  <option>Картриджи для принтера</option>
-                  <option>Принтер</option>
-                  <option>Полимерная ванна</option>
+                <select class="form-control" data-order-good>
+                  <option value="Бумага для принтера">Бумага для принтера</option>
+                  <option value="Краски для принтера">Краски для принтера</option>
+                  <option value="Картриджи для принтера">Картриджи для принтера</option>
+                  <option value="Принтер">Принтер</option>
+                  <option value="Полимерная ванна">Полимерная ванна</option>
                 </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-1 col-form-label">Цена:</label>
+              <div class="col-sm-11">
+                <input type="number" class="form-control" value="2" data-order-price>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">Дата:</label>
               <div class="col-sm-11">
-                <input type="date" class="form-control" value="2020-03-03" />
+                <input type="date" class="form-control" value="2020-03-03" data-order-date>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-1 col-form-label">Статус:</label>
               <div class="col-sm-11">
-                <select class="form-control">
-                  <option selected>На исполнение</option>
-                  <option>Возврат</option>
-                  <option>Заархивированно</option>
-                  <option>Новый</option>
+                <select class="form-control" data-order-status>
+                  <option value="process">На исполнение</option>
+                  <option value="back">Возврат</option>
+                  <option value="archived">Заархивированно</option>
+                  <option value="new">Новый</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="card-footer d-flex justify-content-end">
-            <button class="btn btn-success">Сохранить</button>
+            <button class="btn btn-success" data-save>Сохранить</button>
             <!-- <button class="btn btn-success" disabled>Сохранить</button> -->
           </div>
         </div>

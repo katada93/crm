@@ -20,6 +20,17 @@
     api.emit('update');
   }
 
+  api.updateOrderById = function updateOrderById(orderId, updated) {
+    const order = database.orders.find(x => x.id === orderId);
+    order.fullname = updated.fullname;
+    order.good = updated.good;
+    order.price = updated.price;
+    order.status = updated.status;
+    order.date = updated.date;
+
+    save();
+  }
+
   api.getOrders = function getOrders(state) {
     state = getCopy(state);
     let orders = getCopy(database.orders);
